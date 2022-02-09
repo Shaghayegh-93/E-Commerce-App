@@ -1,0 +1,22 @@
+.produtListpageTitle {
+  margin: 20px;
+}
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.filter {
+  margin: 20px;
+}
+.filterText {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+.selectBox {
+  padding: 10px;
+  margin-right: 20px;
+}
+.optionBox {
+  padding: 10px !important;
+}
