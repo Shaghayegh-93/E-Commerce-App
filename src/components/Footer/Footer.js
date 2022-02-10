@@ -11,7 +11,7 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className="footerContainer">
+    <footer className="footerContainer">
       <div className="footerLeftBox">
         <h1 className="footerLogo">SHERY.</h1>
         <p className="fotterDesc">
@@ -66,7 +66,7 @@ const Footer = () => {
           src="https://i.ibb.co/Qfvn4z6/payment.png"
         />
       </div>
-    </div>
+    </footer>
   );
 };
 
