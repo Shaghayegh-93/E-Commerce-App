@@ -1,31 +1,30 @@
 import SearchIcon from "@material-ui/icons/Search";
 import Badge from "@material-ui/core/Badge";
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { NavLink } from "react-router-dom";
-import "./Navigation.css";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
-    <nav className="navContainer">
-      <ul className="navWrapper">
-        <div className="leftBox">
-          <span className="languageInput">EN</span>
-          <div className="searchBox">
-            <input className="searchInput" placeholder="Search"></input>
+    <nav className={styles.navContainer}>
+      <ul className={styles.navWrapper}>
+        <div className={styles.leftBox}>
+          <span className={styles.languageInput}>EN</span>
+          <div className={styles.searchBox}>
+            <input className={styles.searchInput} placeholder="Search"></input>
 
-            <SearchIcon  className="searchIcon"/>
+            <SearchIcon className={styles.searchIcon} />
           </div>
         </div>
-        <div className="centerBox">
-          <h1 className="logo">SHERY.</h1>
-       
+        <div className={styles.centerBox}>
+          <h1 className={styles.logo}>SHERY.</h1>
         </div>
-        <div className="rightBox">
-          <div className="navItem">REGISTER</div>
-          <div className="navItem">SIGN IN</div>
-          <div className="navItem">
+        <div className={styles.rightBox}>
+          <div className={styles.navItem}>REGISTER</div>
+          <div className={styles.navItem}>SIGN IN</div>
+          <div className={styles.navItem}>
             <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlinedIcon  />
+              <ShoppingCartOutlinedIcon />
             </Badge>
           </div>
         </div>

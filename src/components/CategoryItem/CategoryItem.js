@@ -1,11 +1,11 @@
-import "./categoryItem.css";
+import styles from "./categoryItem.module.css";
 const CategoryItem = ({ categoryItem }) => {
   return (
     <div className="categoryContainer">
-      <img className="categoryImg" src={categoryItem.img}></img>
-      <div className="categoryInfoContainer">
-        <h1 className="categoryTitle">{categoryItem.title}</h1>
-        <button className="categoryButton">SHOP NOW</button>
+      <img className={styles.categoryImg} src={categoryItem.img}></img>
+      <div className={styles.categoryInfoContainer}>
+        <h1 className={styles.categoryTitle}>{categoryItem.title}</h1>
+        <button className={styles.categoryButton}>SHOP NOW</button>
       </div>
     </div>
   );

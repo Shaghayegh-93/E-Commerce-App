@@ -1,4 +1,4 @@
-import "./slider.css";
+import styles from "./slider.module.css";
 import ArrowLeftOutlinedIcon from "@material-ui/icons/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@material-ui/icons/ArrowRightOutlined";
 import { sliderItems } from "../../data";
@@ -14,39 +14,36 @@ const Slider = () => {
   };
 
   return (
-    <div className="sliderContainer">
+    <div className={styles.sliderContainer}>
       <div
-        className="arrowLeft arrow"
+        className={`${styles.arrow} ${styles.arrowLeft}`}
         onClick={() => sliderArrowHandler("left")}
       >
         <ArrowLeftOutlinedIcon />
       </div>
       <div
-        className="sliderWrapper"
-        style={{transform: `translateX(${-100 * slideIndex}vw)`}}
-        
-          
+        className={styles.sliderWrapper}
+        style={{ transform: `translateX(${-100 * slideIndex}vw)` }}
       >
         {sliderItems.map((item) => (
           <div
             key={item.id}
-            className="silde"
+            className={styles.silde}
             style={{ backgroundColor: item.bg }}
-           
           >
-            <div className="imgContainer">
+            <div className={styles.imgContainer}>
               <img alt="heroImage" className="slideImage" src={item.img} />
             </div>
-            <div className="infoContainer">
-              <h1 className="headerTitle">{item.title}</h1>
-              <p className="headerDescription">{item.desc}</p>
-              <button className="headerButton">SHOP NOW</button>
+            <div className={styles.infoContainer}>
+              <h1 className={styles.headerTitle}>{item.title}</h1>
+              <p className={styles.headerDescription}>{item.desc}</p>
+              <button className={styles.headerButton}>SHOP NOW</button>
             </div>
           </div>
         ))}
       </div>
       <div
-        className="arrowRight arrow"
+        className={`${styles.arrow} ${styles.arrowRight}`}
         onClick={() => sliderArrowHandler("right")}
       >
         <ArrowRightOutlinedIcon />

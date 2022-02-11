@@ -1,9 +1,9 @@
 import { popularProducts } from "../../data";
 import ProductItem from "../ProductItem/ProductItem";
-import "./productList.css";
+import styles from "./productList.module.css";
 const ProductList = () => {
   return (
-    <div className="productListContainer">
+    <div className={styles.productListContainer}>
       {popularProducts.map((product) => (
         <ProductItem key={product.id} productItem={product} />
       ))}

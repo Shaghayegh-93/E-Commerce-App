@@ -1,16 +1,16 @@
 import { Send } from "@material-ui/icons";
-import "./newsLetters.css";
+import styles from "./newsLetters.module.css";
 
 const NewsLetters = () => {
   return (
-    <div className="newsLettersContainer">
-      <h1 className="newsTitle">Newsletter</h1>
-      <div className="newsDesc">
+    <div className={styles.newsLettersContainer}>
+      <h1 className={styles.newsTitle}>Newsletter</h1>
+      <div className={styles.newsDesc}>
         Get timely updates from your favorite products.
       </div>
-      <div className="newsInputContainer">
-        <input className="newsInput" placeholder="Your email" />
-        <button className="newsButton">
+      <div className={styles.newsInputContainer}>
+        <input className={styles.newsInput} placeholder="Your email" />
+        <button className={styles.newsButton}>
           <Send />
         </button>
       </div>
