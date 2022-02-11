@@ -1,0 +1,70 @@
+.footerContainer {
+  display: flex;
+}
+.footerLeftBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.fotterDesc {
+  margin: 20px 0;
+}
+.footerMediaContainer {
+  display: flex;
+}
+.mediaIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-right: 20px;
+}
+.footerCenterBox {
+  flex: 1;
+  padding: 20px;
+}
+.footerTitle {
+  margin-bottom: 30px;
+}
+.footerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.footerListItem {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.footerRightBox {
+  flex: 1;
+  padding: 20px;
+}
+.contactItem {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.contactItemIcon {
+  margin-right: 10px;
+}
+.paymentImg {
+  width: 40%;
+}
+@media (max-width: 380px) {
+  .footerContainer {
+    flex-direction: column;
+  }
+  .footerCenterBox {
+    display: none;
+  }
+  .footerRightBox {
+    background-color: #fff8f8;
+  }
+}
