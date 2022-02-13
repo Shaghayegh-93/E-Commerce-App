@@ -1,7 +1,7 @@
 import styles from "./categoryItem.module.css";
 const CategoryItem = ({ categoryItem }) => {
   return (
-    <div className="categoryContainer">
+    <div className={styles.categoryContainer}>
       <img className={styles.categoryImg} src={categoryItem.img}></img>
       <div className={styles.categoryInfoContainer}>
         <h1 className={styles.categoryTitle}>{categoryItem.title}</h1>
