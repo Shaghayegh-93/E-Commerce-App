@@ -82,3 +82,10 @@
     margin-left: 10px;
   }
 }
+@media (min-width: 381px) and (max-width: 768px) {
+  .navContainer {
+    width: 157%;
+  }
+}
+@media (max-width: 1200px) {
+}

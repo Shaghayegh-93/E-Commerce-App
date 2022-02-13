@@ -68,3 +68,8 @@
     background-color: #fff8f8;
   }
 }
+@media (min-width: 381px) and (max-width: 768px) {
+  .footerContainer {
+    width: 157%;
+  }
+}

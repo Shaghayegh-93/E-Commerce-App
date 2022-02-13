@@ -9,3 +9,8 @@
     flex-direction: column;
   }
 }
+@media (min-width: 381px) and (max-width: 768px) {
+  .categoriesContainer {
+    width: 157%;
+  }
+}

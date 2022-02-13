@@ -8,3 +8,8 @@
   font-size: 14px;
   font-weight: 500;
 }
+@media (min-width: 381px) and (max-width: 768px) {
+  .announceContainer {
+    width: 157%;
+  }
+}

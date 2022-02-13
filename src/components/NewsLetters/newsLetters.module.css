@@ -36,11 +36,19 @@
   color: #fff;
 }
 @media (max-width: 380px) {
+  .newsTitle {
+    font-size: 50px;
+  }
   .newsDesc {
     text-align: center;
   }
   .newsInputContainer {
     width: 80%;
     margin-bottom: 20px;
+  }
+}
+@media (min-width: 381px) and (max-width: 768px) {
+  .newsLettersContainer {
+    width: 157%;
   }
 }

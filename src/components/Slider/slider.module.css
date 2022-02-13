@@ -32,7 +32,7 @@
 .sliderWrapper {
   height: 100%;
   display: flex;
-  transition: inherit 1.5s ease;
+  transition: all 1.5s ease;
 }
 .silde {
   width: 100vw;
