@@ -3,14 +3,9 @@
   padding: 20px;
   justify-content: space-between;
 }
-@media (max-width: 380px) {
+@media (max-width: 320px) {
   .categoriesContainer {
     padding: 0;
     flex-direction: column;
-  }
-}
-@media (min-width: 381px) and (max-width: 768px) {
-  .categoriesContainer {
-    width: 157%;
   }
 }

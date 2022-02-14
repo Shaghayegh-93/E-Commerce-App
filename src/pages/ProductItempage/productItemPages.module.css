@@ -80,3 +80,33 @@
 .addToCartButton:hover {
   background-color: #f8f4f4;
 }
+@media (max-width: 380px) {
+  .wrapper {
+    padding: 10px;
+    flex-direction: column;
+  }
+  .productImg {
+    height: 40vh;
+  }
+  .infoContainer {
+    padding: 10px;
+  }
+  .filterContainer {
+    width: 100%;
+  }
+  .addContainer {
+    width: 100%;
+  }
+}
+@media (min-width: 381px) and (max-width: 768px) {
+  .productImg {
+    height: 120vh;
+  }
+
+  .filterContainer {
+    width: 100%;
+  }
+  .addContainer {
+    width: 100%;
+  }
+}

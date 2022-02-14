@@ -69,7 +69,12 @@
   }
 }
 @media (min-width: 381px) and (max-width: 768px) {
-  .footerContainer {
-    width: 157%;
+  .footerListItem {
+    width: 40%;
+    margin: 5px;
+  }
+
+  .contactItemIcon {
+    margin-bottom: 10px;
   }
 }

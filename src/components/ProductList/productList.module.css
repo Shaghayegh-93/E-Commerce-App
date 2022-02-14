@@ -4,8 +4,3 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-@media (min-width: 381px) and (max-width: 768px) {
-  .productListContainer {
-    width: 157%;
-  }
-}

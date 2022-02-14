@@ -17,6 +17,24 @@
   padding: 10px;
   margin-right: 20px;
 }
-.optionBox {
-  padding: 10px !important;
+
+@media (max-width: 380px) {
+  .filterContainer {
+    overflow: hidden;
+  }
+  .filter {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .filterText {
+    margin-bottom: 5px;
+    margin-right: 0;
+    font-size: 15px;
+  }
+  .selectBox {
+    margin: 10px 0;
+  }
+}
+@media (min-width: 381px) and (max-width: 768px) {
 }
