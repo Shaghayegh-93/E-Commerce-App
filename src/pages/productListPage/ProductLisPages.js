@@ -2,60 +2,92 @@ import { useState } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 import Layout from "../../Layout/Layout";
 import styles from "./productListPage.module.css";
+import NewsLetters from "../../components/NewsLetters/NewsLetters";
+import { useLocation } from "react-router-dom";
 const ProductListPage = () => {
-  const options = [
-    { colorTitle: "White", sizeTitle: "XS", id: Date.now() },
-    { colorTitle: "Black", sizeTitle: "S", id: Date.now() },
-    { colorTitle: "Red", sizeTitle: "M", id: Date.now() },
-    { colorTitle: "Blue", sizeTitle: "L", id: Date.now() },
-    { colorTitle: "Yellow", sizeTitle: "XL", id: Date.now() },
-    { colorTitle: "White", sizeTitle: "XXL", id: Date.now() },
-    { colorTitle: "Green", sizeTitle: "XXXL", id: Date.now() },
+  const allColors = [
+    { title: "White", id: Date.now() },
+    { title: "Black", id: Date.now() },
+    { title: "Red", id: Date.now() },
+    { title: "Blue", id: Date.now() },
+    { title: "Yellow", id: Date.now() },
+    { title: "White", id: Date.now() },
+    { title: "Green", id: Date.now() },
   ];
+  const allSizes = [
+    { title: "XS", id: Date.now() },
+    { title: "S", id: Date.now() },
+    { title: "M", id: Date.now() },
+    { title: "L", id: Date.now() },
+    { title: "XL", id: Date.now() },
+    { title: "XXL", id: Date.now() },
+    { title: "XXXL", id: Date.now() },
+  ];
+  const location = useLocation();
+  const cat = location.pathname.split("/")[2];
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("newest");
+  const filterHandler = (e) => {
+    setFilters({ ...filters, [e.target.name]: e.target.value });
+  };
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
+
+ 
 
   return (
     <Layout>
-      <div className="productListContainer">
+      <div className={styles.productListContainer}>
         <h1 className={styles.produtListpageTitle}>Dresses</h1>
         <div className={styles.filterContainer}>
           <div className={styles.filter}>
-            <span className={styles.filterText}>Filter products:</span>
-            <select className={styles.selectBox}>
+            <span className={styles.filterText}>Filter Products:</span>
+            <select
+              name="color"
+              onChange={filterHandler}
+              className={styles.selectBox}
+            >
               <option disabled selected>
-                color
+                Color
               </option>
-              {options.map((color) => {
+              {allColors.map((color) => {
                 return (
-                  <option key={color.id} value={color.colorTitle}>
-                    {color.colorTitle}
+                  <option key={color.id} value={color.title}>
+                    {color.title}
                   </option>
                 );
               })}
             </select>
-            <select className={styles.selectBox}>
+            <select
+              name="size"
+              onChange={filterHandler}
+              className={styles.selectBox}
+            >
               <option disabled selected>
                 Size
               </option>
-              {options.map((size) => {
+              {allSizes.map((size) => {
                 return (
-                  <option key={size.id} value={size.sizeTitle}>
-                    {size.sizeTitle}
+                  <option key={size.id} value={size.title}>
+                    {size.title}
                   </option>
                 );
               })}
             </select>
           </div>
           <div className={styles.filter}>
-            <span className={styles.filterText}>Sort products:</span>
-            <select className={styles.selectBox}>
-              <option selected>Newest</option>
-              <option>Price (asc)</option>
-              <option>Price (desc)</option>
+            <span className={styles.filterText}>Sort Products:</span>
+            <select onChange={sortHandler} className={styles.selectBox}>
+              <option value="Newest">Newest</option>
+              <option value="asc">Price (asc)</option>
+              <option value="desc">Price (desc)</option>
             </select>
           </div>
         </div>
-        <ProductList />
+        <ProductList category={cat} filter={filters} sort={sort}/>
       </div>
+      <NewsLetters />
     </Layout>
   );
 };
