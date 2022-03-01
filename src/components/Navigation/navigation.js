@@ -3,8 +3,10 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
+import { useCart } from "../../context/CartProvider";
 
 const Navigation = () => {
+  const { cart } = useCart();
   return (
     <nav className={styles.navContainer}>
       <ul className={styles.navWrapper}>
@@ -23,7 +25,7 @@ const Navigation = () => {
           <div className={styles.navItem}>REGISTER</div>
           <div className={styles.navItem}>SIGN IN</div>
           <div className={styles.navItem}>
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={cart.length} color="primary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </div>
