@@ -6,12 +6,11 @@ import NewsLetters from "../../components/NewsLetters/NewsLetters";
 import { useLocation } from "react-router-dom";
 const ProductListPage = () => {
   const allColors = [
-    { title: "White", id: Date.now() },
-    { title: "Black", id: Date.now() },
-    { title: "Red", id: Date.now() },
-    { title: "Blue", id: Date.now() },
-    { title: "Yellow", id: Date.now() },
-    { title: "White", id: Date.now() },
+    { title: "white", id: Date.now() },
+    { title: "black", id: Date.now() },
+    { title: "red", id: Date.now() },
+    { title: "blue", id: Date.now() },
+    { title: "yellow", id: Date.now() },
     { title: "Green", id: Date.now() },
   ];
   const allSizes = [
@@ -28,18 +27,17 @@ const ProductListPage = () => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
   const filterHandler = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    setFilters({ ...filters, [e.target.name]: e.target.value});
   };
+
   const sortHandler = (e) => {
     setSort(e.target.value);
   };
 
- 
-
   return (
     <Layout>
       <div className={styles.productListContainer}>
-        <h1 className={styles.produtListpageTitle}>Dresses</h1>
+        <h1 className={styles.produtListpageTitle}>{cat}</h1>
         <div className={styles.filterContainer}>
           <div className={styles.filter}>
             <span className={styles.filterText}>Filter Products:</span>
@@ -85,7 +83,7 @@ const ProductListPage = () => {
             </select>
           </div>
         </div>
-        <ProductList category={cat} filter={filters} sort={sort}/>
+        <ProductList category={cat} filter={filters} sort={sort} />
       </div>
       <NewsLetters />
     </Layout>
