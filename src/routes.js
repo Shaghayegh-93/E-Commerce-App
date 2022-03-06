@@ -1,4 +1,5 @@
 import CartPage from "./pages/CartPage/CartPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProductItemPages from "./pages/ProductItempage/ProductItemPages";
@@ -12,5 +13,6 @@ const routes = [
   { path: "/product/:id", element: <ProductItemPages />, id: Date.now() },
   { path: "/login", element: <LoginPage />, id: Date.now() },
   { path: "/register", element: <RegisterPage />, id: Date.now() },
+  { path: "/checkout", element: <CheckoutPage />, id: Date.now() },
 ];
 export default routes;
