@@ -1,73 +1,99 @@
 import { Add, Remove } from "@material-ui/icons";
 import Layout from "../../Layout/Layout";
 import styles from "./productItemPages.module.css";
+import NewsLetters from "../../components/NewsLetters/NewsLetters";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCart, useCartActions } from "../../context/CartProvider";
 
 const ProductItemPages = () => {
-  const sizes = [
-    { title: "XS", id: Date.now() },
-    { title: "X", id: Date.now() },
-    { title: "M", id: Date.now() },
-    { title: "L", id: Date.now() },
-    { title: "XL", id: Date.now() },
-    { title: "XXL", id: Date.now() },
-    { title: "XXL", id: Date.now() },
-  ];
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const { cart } = useCart();
+  const dispatch = useCartActions();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/product/find/" + id
+        );
+        setProduct(res.data);
+      } catch (error) {}
+    };
+    getProduct();
+  }, [id]);
+  const quantityHandler = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+  const addProductHandler = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: { ...product, quantity, color, size },
+    });
+  };
+
   return (
     <Layout>
       <div className={styles.wrapper}>
         <div className={styles.imgContainer}>
-          <img
-            className={styles.productImg}
-            src="https://i.ibb.co/S6qMxwr/jean.jpg"
-          />
+          <img className={styles.productImg} src={product.img} />
         </div>
         <div className={styles.infoContainer}>
-          <h1 className={styles.title}>Denim Jumpsuit</h1>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-            tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
-          </p>
-          <span className={styles.price}>$20</span>
+          <h1 className={styles.title}>{product.title}</h1>
+          <p className={styles.desc}> {product.description} </p>
+
+          <span className={styles.price}>{product.price}</span>
           <div className={styles.filterContainer}>
             <div className={styles.filter}>
               <span className={styles.filterTitle}>Color</span>
-              <div
-                className={styles.filterColor}
-                style={{ backgroundColor: "black" }}
-              />
-              <div
-                className={styles.filterColor}
-                style={{ backgroundColor: "darkblue" }}
-              />
-              <div
-                className={styles.filterColor}
-                style={{ backgroundColor: "gray" }}
-              />
+
+              {product.color?.map((c) => (
+                <div
+                  className={styles.filterColor}
+                  onClick={() => setColor(c)}
+                  style={{ backgroundColor: `${c} ` }}
+                  key={c}
+                />
+              ))}
             </div>
             <div className={styles.filter}>
               <span className={styles.filterTitle}>Size</span>
-              <select className={styles.filterSize}>
-                {sizes.map((size) => (
-                  <option value={size.title} key={size.id}>
-                    {size.title}
-                  </option>
+              <select
+                onChange={(e) => setSize(e.target.value)}
+                className={styles.filterSize}
+              >
+                {product.size?.map((size) => (
+                  <option key={size}>{size}</option>
                 ))}
               </select>
             </div>
           </div>
           <div className={styles.addContainer}>
             <div className={styles.amountContainer}>
-              <Remove />
-              <span className={styles.amount}>1</span>
-              <Add />
+              <Remove onClick={() => quantityHandler("dec")} />
+              <span className={styles.amount}>{quantity}</span>
+              <Add onClick={() => quantityHandler("inc")} />
             </div>
-            <button className={styles.addToCartButton}>ADD TO CART</button>
+            <button
+              className={styles.addToCartButton}
+              onClick={() => addProductHandler(product.id)}
+            >
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
+      <NewsLetters />
     </Layout>
   );
 };
