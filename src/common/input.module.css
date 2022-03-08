@@ -1,0 +1,17 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 40%;
+  height: 10%;
+  flex: 1;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  margin: 20px 10px 5px 0;
+  cursor: pointer;
+}
+.error {
+  color: red;
+}
