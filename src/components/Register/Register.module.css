@@ -25,13 +25,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.input {
-  min-width: 40%;
-  flex: 1;
-  padding: 10px;
-  margin: 20px 10px 0 0;
-  cursor: pointer;
-}
+
 .aggrement {
   font-size: 12px;
   margin: 20px 0;
@@ -43,6 +37,16 @@
   background-color: teal;
   color: #fff;
   cursor: pointer;
+  margin-bottom:10px;
+}
+.button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: teal;
+}
+.redirectLink{
+  
+  text-decoration: none;
 }
 @media (max-width: 380px) {
   .wrapper {
