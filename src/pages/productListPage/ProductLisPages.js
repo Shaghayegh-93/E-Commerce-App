@@ -27,7 +27,7 @@ const ProductListPage = () => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
   const filterHandler = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value});
+    setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
   const sortHandler = (e) => {
