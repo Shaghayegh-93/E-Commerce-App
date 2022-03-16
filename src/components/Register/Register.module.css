@@ -37,15 +37,14 @@
   background-color: teal;
   color: #fff;
   cursor: pointer;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 .button:disabled {
   cursor: not-allowed;
   background-color: #ccc;
   color: teal;
 }
-.redirectLink{
-  
+.redirectLink {
   text-decoration: none;
 }
 @media (max-width: 380px) {
