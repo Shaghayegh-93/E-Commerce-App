@@ -3,10 +3,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "../../common/Input";
 import loginUser from "../../services/loginService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth, useAuthAction } from "../../context/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
   email: "",
@@ -20,15 +21,22 @@ const validationSchema = Yup.object({
 });
 const Login = () => {
   const [error, setError] = useState(null);
+  const setAuth = useAuthAction();
+  const auth = useAuth();
   const navigate = useNavigate();
-  
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
+
+  useEffect(() => {
+    if (auth) navigate(redirect);
+  }, [auth]);
 
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
+      setAuth(data);
       setError(null);
-      navigate("/");
-     
+      navigate("/checkout");
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -62,11 +70,17 @@ const Login = () => {
             name="password"
             type="password"
           />
-          <button disabled={!formik.isValid} className={styles.button}>
+          <button
+            type="submit"
+            disabled={!formik.isValid}
+            className={styles.button}
+          >
             LOGIN
           </button>
-          <a className={styles.link}>DO NOT YOU REMEMBER THE PASSWORD?</a>
-          <a className={styles.link}>CREATE A NEW ACCOUNT</a>
+          <p className={styles.link}>DO NOT YOU REMEMBER THE PASSWORD?</p>
+          <Link to={`/register?redirect=${redirect}`}>
+            <p className={styles.link}>CREATE A NEW ACCOUNT</p>
+          </Link>
         </form>
       </div>
     </div>
