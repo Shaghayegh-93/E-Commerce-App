@@ -14,7 +14,6 @@ const ProductItemPages = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
-  const { cart } = useCart();
   const dispatch = useCartActions();
 
   useEffect(() => {
@@ -86,7 +85,7 @@ const ProductItemPages = () => {
             </div>
             <button
               className={styles.addToCartButton}
-              onClick={() => addProductHandler(product.id)}
+              onClick={() => addProductHandler(product)}
             >
               ADD TO CART
             </button>
