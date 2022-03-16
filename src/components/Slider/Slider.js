@@ -32,10 +32,14 @@ const Slider = () => {
             style={{ backgroundColor: item.bg }}
           >
             <div className={styles.imgContainer}>
-              <img alt="heroImage" className="slideImage" src={item.img} />
+              <img
+                alt="heroImage"
+                className={styles.slideImage}
+                src={item.img}
+              />
             </div>
             <div className={styles.infoContainer}>
-              <h1 className={styles.headerTitle}>{item.title}</h1>
+              <h1 className={styles.headerTitle}>{item.name}</h1>
               <p className={styles.headerDescription}>{item.desc}</p>
               <button className={styles.headerButton}>SHOP NOW</button>
             </div>
