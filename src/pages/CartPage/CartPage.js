@@ -1,11 +1,30 @@
 import { Add, Remove } from "@material-ui/icons";
-import StripeCheckout from "react-stripe-checkout";
-import { useCart } from "../../context/CartProvider";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
+import { useCart, useCartActions } from "../../context/CartProvider";
 import Layout from "../../Layout/Layout";
 import styles from "./CartPage.module.css";
 
 const CartPage = () => {
-  const { cart, total } = useCart();
+  const { cart, total, quantity } = useCart();
+  const dispatch = useCartActions();
+  const navigate = useNavigate();
+  const auth = useAuth();
+  const userValidation = () => {
+    if (auth) {
+      navigate("/checkout");
+    } else {
+      navigate("/register");
+    }
+  };
+
+  const incHandler = (cartItem) => {
+    dispatch({ type: "INC_PRODUCT", payload: cartItem });
+  };
+  const decrementHandler = (cartItem) => {
+    dispatch({ type: "DECREMENT_PRODUCT", payload: cartItem });
+  };
+
   return (
     <Layout>
       <div className={styles.mainContainer}>
@@ -15,12 +34,14 @@ const CartPage = () => {
             CONTINUE SHOPPING
           </button>
           <div className={styles.topTextsContainer}>
-            <span className={styles.topText}>Shopping Bag(2)</span>
+            <span className={styles.topText}>Shopping Bag({cart.length})</span>
             <span className={styles.topText}>Your Wishlist(0)</span>
           </div>
-          <button className={`${styles.topButton} ${styles.topButtonFilled}`}>
-            CHECKOUT NOW
-          </button>
+          <NavLink to="/register?redirect=checkout">
+            <button className={`${styles.topButton} ${styles.topButtonFilled}`}>
+              CHECKOUT NOW
+            </button>
+          </NavLink>
         </div>
         <div className={styles.bottomContainer}>
           <div className={styles.infoContainer}>
@@ -45,15 +66,11 @@ const CartPage = () => {
                 </div>
                 <div className={styles.priceDetail}>
                   <div className={styles.productAmountContainer}>
-                    <Remove />
-                    <span className={styles.productAmount}>
-                      {product.quantity}
-                    </span>
-                    <Add />
+                    <Remove onClick={() => decrementHandler(product)} />
+                    <span className={styles.productAmount}>{quantity}</span>
+                    <Add onClick={() => incHandler(product)} />
                   </div>
-                  <span className={styles.productPrice}>
-                    ${product.price * product.quantity}
-                  </span>
+                  <span className={styles.productPrice}>${total}</span>
                 </div>
               </div>
             ))}
@@ -67,28 +84,20 @@ const CartPage = () => {
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.summaryItemText}>Estimated Shipping</span>
-              <span className={styles.summaryItemPrice}>$ 5.90</span>
+              <span className={styles.summaryItemPrice}>$ 0</span>
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.summaryItemText}>Shipping Discount</span>
-              <span className={styles.summaryItemPrice}>$ -5.90</span>
+              <span className={styles.summaryItemPrice}>$ 0</span>
             </div>
             <div className={`${styles.summaryItem} ${styles.summaryItemTotal}`}>
               <span className={styles.summaryItemText}>Total</span>
               <span className={styles.summaryItemPrice}>${total}</span>
             </div>
-            <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
-              billingAddress
-              shippingAddress
-              description={`Your total is $${total}`}
-              amount={total * 100}
-              // token={onToken}
-              // stripeKey={KEY}
-            >
-              <button className={styles.summaryButton}>CHECKOUT NOW</button>
-            </StripeCheckout>
+
+            <button onClick={userValidation} className={styles.summaryButton}>
+              CHECKOUT NOW
+            </button>
           </div>
         </div>
       </div>
