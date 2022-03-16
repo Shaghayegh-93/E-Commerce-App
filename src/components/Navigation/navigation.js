@@ -1,12 +1,15 @@
 import SearchIcon from "@material-ui/icons/Search";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { useCart } from "../../context/CartProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 const Navigation = () => {
   const { cart } = useCart();
+  const userData = useAuth();
+
   return (
     <nav className={styles.navContainer}>
       <ul className={styles.navWrapper}>
@@ -22,13 +25,27 @@ const Navigation = () => {
           <h1 className={styles.logo}>SHERY.</h1>
         </div>
         <div className={styles.rightBox}>
-          <div className={styles.navItem}>REGISTER</div>
-          <div className={styles.navItem}>SIGN IN</div>
-          <div className={styles.navItem}>
-            <Badge badgeContent={cart.length} color="primary">
-              <ShoppingCartOutlinedIcon />
-            </Badge>
-          </div>
+          <Link className={styles.navItemLink} to="/register">
+            <div className={styles.navItem}>
+              {userData ? "Wellcome" : "REGISTER"}
+            </div>
+          </Link>
+          <Link
+            className={styles.navItemLink}
+            to={userData ? "/profile" : "/login"}
+          >
+            <div className={styles.navItem}>
+              {userData ? "Profile" : "SIGN IN"}
+            </div>
+          </Link>
+
+          <Link to="/cart">
+            <div className={styles.navItem}>
+              <Badge badgeContent={cart.length} color="primary">
+                <ShoppingCartOutlinedIcon />
+              </Badge>
+            </div>
+          </Link>
         </div>
       </ul>
     </nav>
