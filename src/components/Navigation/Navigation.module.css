@@ -48,6 +48,12 @@
   cursor: pointer;
   margin-left: 25px;
 }
+.navItemLink {
+  text-decoration: none;
+}
+.activeLink {
+  color: teal;
+}
 
 @media (max-width: 320px) {
   .navContainer {
