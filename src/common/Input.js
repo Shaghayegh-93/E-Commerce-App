@@ -6,7 +6,7 @@ const Input = ({ formik, name, type = "text" }) => {
         className={styles.input}
         name={name}
         placeholder={name}
-        {...formik.getFieldProps({name})}
+        {...formik.getFieldProps({ name })}
         type={type}
       />
       {formik.errors[name] && formik.touched[name] && (
