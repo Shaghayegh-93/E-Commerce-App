@@ -1,12 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
-import { NavLink, useNavigate,Link } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import { useCart, useCartActions } from "../../context/CartProvider";
 import Layout from "../../Layout/Layout";
 import styles from "./CartPage.module.css";
 
 const CartPage = () => {
-  const { cart, total, quantity } = useCart();
+  const { cart, total } = useCart();
   const dispatch = useCartActions();
   const navigate = useNavigate();
   const auth = useAuth();
@@ -31,9 +31,11 @@ const CartPage = () => {
         <h1 className={styles.title}>YOUR BAG</h1>
         <div className={styles.topContainer}>
           <Link to="/">
-          <button className={`${styles.topButton} ${styles.topButtonOutlined}`}>
-            CONTINUE SHOPPING
-          </button>
+            <button
+              className={`${styles.topButton} ${styles.topButtonOutlined}`}
+            >
+              CONTINUE SHOPPING
+            </button>
           </Link>
           <div className={styles.topTextsContainer}>
             <span className={styles.topText}>Shopping Bag({cart.length})</span>
