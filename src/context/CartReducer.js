@@ -42,8 +42,6 @@ const cartReducer = (state, action) => {
         updatedItem.quantity--;
         updatedCart[updatedItemIndex] = updatedItem;
 
-        console.log(state.total);
-        console.log(action.payload.price);
         return {
           ...state,
           quantity: state.quantity--,
