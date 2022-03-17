@@ -1,5 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate,Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import { useCart, useCartActions } from "../../context/CartProvider";
 import Layout from "../../Layout/Layout";
@@ -30,9 +30,11 @@ const CartPage = () => {
       <div className={styles.mainContainer}>
         <h1 className={styles.title}>YOUR BAG</h1>
         <div className={styles.topContainer}>
+          <Link to="/">
           <button className={`${styles.topButton} ${styles.topButtonOutlined}`}>
             CONTINUE SHOPPING
           </button>
+          </Link>
           <div className={styles.topTextsContainer}>
             <span className={styles.topText}>Shopping Bag({cart.length})</span>
             <span className={styles.topText}>Your Wishlist(0)</span>
@@ -67,10 +69,14 @@ const CartPage = () => {
                 <div className={styles.priceDetail}>
                   <div className={styles.productAmountContainer}>
                     <Remove onClick={() => decrementHandler(product)} />
-                    <span className={styles.productAmount}>{quantity}</span>
+                    <span className={styles.productAmount}>
+                      {product.quantity}
+                    </span>
                     <Add onClick={() => incHandler(product)} />
                   </div>
-                  <span className={styles.productPrice}>${total}</span>
+                  <span className={styles.productPrice}>
+                    ${product.price * product.quantity}
+                  </span>
                 </div>
               </div>
             ))}
